@@ -5,8 +5,8 @@ import time
 import requests
 
 # -------- CONFIG ----------
-ESP_IP = "http://10.48.204.80"    # replace with the IP printed in ESP serial
-CAM_URL = "http://100.79.162.7:8080/video"  # phone IP webcam stream (change)
+ESP_IP = "http://192.168.230.80"    # replace with the IP printed in ESP serial
+CAM_URL = "http://192.168.230.254:8080/video"  # phone IP webcam stream (change)
 MODEL_PROTO = "models/deploy.prototxt"
 MODEL_WEIGHTS = "models/mobilenet_iter_73000.caffemodel"
 USE_MOBILENET = True   # if False, script uses Haar face detection fallback
