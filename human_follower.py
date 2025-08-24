@@ -40,16 +40,16 @@ def send_speeds(left, right):
     except Exception as e:
         print("HTTP send error:", e)
 
-# Load models
+
 if USE_MOBILENET:
     net = cv2.dnn.readNetFromCaffe(MODEL_PROTO, MODEL_WEIGHTS)
 else:
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-# Thread-safe queue
+
 frame_queue = Queue(maxsize=2)
 
-# Camera thread: constantly read frames
+
 def camera_thread():
     cap = cv2.VideoCapture(CAM_URL)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_W)
@@ -64,7 +64,6 @@ def camera_thread():
             frame_queue.put(frame)
     cap.release()
 
-# Processing thread: handle detection + PID + motor control
 def processing_thread():
     global prev_time
     while True:
@@ -125,7 +124,7 @@ def processing_thread():
 
     cv2.destroyAllWindows()
 
-# Start threads
+
 print("Starting threaded human-follow bot. Press 'q' to quit.")
 t1 = threading.Thread(target=camera_thread, daemon=True)
 t2 = threading.Thread(target=processing_thread, daemon=True)
